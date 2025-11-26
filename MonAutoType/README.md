@@ -1,59 +1,60 @@
-# MonAutoType - Outil de saisie automatique pour Windows
+# MonAutoType - Auto-Type Tool for Windows
 
 ## Installation
 
-1. **Installer .NET 8 SDK** : https://dotnet.microsoft.com/download/dotnet/8.0
-2. **Ouvrir le dossier MonAutoType dans Visual Studio Code**
-3. **Installer l'extension C# Dev Kit** dans VSC si pas déjà fait
+1. **Install .NET 8 SDK**: https://dotnet.microsoft.com/download/dotnet/8.0
+2. **Open the MonAutoType folder in Visual Studio Code**
+3. **Install the C# Dev Kit extension** in VSC if not already done
 
-## Compilation
+## Build
 
-Dans le terminal VSC, depuis le dossier `MonAutoType` :
+In the VSC terminal, from the `MonAutoType` folder:
 ```bash
 dotnet build
 ```
 
-## Exécution
+## Run
 
 ```bash
 dotnet run
 ```
 
-Ou directement :
+Or directly:
 ```bash
 .\bin\Debug\net8.0-windows\MonAutoType.exe
 ```
 
-## Utilisation
+## Usage
 
-1. **Saisir le texte** dans la zone de texte
-2. **Cliquer sur "Auto-Type"**
-3. **Placer rapidement le focus** sur la fenêtre cible (vous avez 3 secondes)
-4. Le texte sera automatiquement tapé
+1. **Enter the text** in the text area
+2. **Click "Auto-Type"**
+3. **Quickly switch focus** to the target window (you have a configurable delay)
+4. The text will be automatically typed
 
-## Caractères testés
+## Tested Characters
 
-L'application gère correctement tous les caractères Unicode incluant :
-- Lettres accentuées : é, è, à, ù, ç, ô, ï
-- Symboles : €, @, #, ^, °
-- Caractères spéciaux : œ, æ, ñ
-- Emojis et caractères non-latins
+The application correctly handles all Unicode characters including:
+- Accented letters: é, è, à, ù, ç, ô, ï
+- Symbols: €, @, #, ^, °
+- Special characters: œ, æ, ñ
+- Emojis and non-Latin characters
 
-## Configuration recommandée
+## Recommended Settings
 
-- **Délai avant saisie** : 3 secondes
-- **Délai entre caractères** : 15 ms
-- **Délai entre lignes** : 100 ms
+- **Delay before typing**: 5 seconds
+- **Delay between characters**: 15 ms
+- **Delay between lines**: 100 ms
 
-## Notes techniques
+## Technical Notes
 
-- Utilise l'API Windows `SendInput` avec Unicode
-- Fonctionne indépendamment du layout clavier (AZERTY, QWERTY, etc.)
-- Compatible Windows 11
+- Uses the Windows `SendInput` API with Unicode
+- Works independently of keyboard layout (AZERTY, QWERTY, etc.)
+- Uses Virtual Key Codes for Enter key (RDP/HTML5 compatible)
+- Compatible with Windows 10/11
 
-## Dépannage
+## Troubleshooting
 
-Si l'application ne fonctionne pas :
-1. Vérifier que .NET 8 est installé : `dotnet --version`
-2. Exécuter en tant qu'administrateur si nécessaire
-3. Certains antivirus peuvent bloquer la simulation de saisie
+If the application doesn't work:
+1. Check that .NET 8 is installed: `dotnet --version`
+2. Run as administrator if necessary
+3. Some antivirus software may block keyboard simulation
