@@ -3,6 +3,7 @@
 [![GitHub Release](https://img.shields.io/github/v/release/PhilCANDIDO/keyboard-auto-type)](https://github.com/PhilCANDIDO/keyboard-auto-type/releases)
 [![Platform](https://img.shields.io/badge/platform-Windows-blue)](https://github.com/PhilCANDIDO/keyboard-auto-type)
 [![.NET](https://img.shields.io/badge/.NET-8.0-purple)](https://dotnet.microsoft.com/download/dotnet/8.0)
+[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ## Overview
 
@@ -134,17 +135,39 @@ The executable will be created at `./publish/MonAutoType.exe`
 - Consider your organization's security policies regarding automation tools
 - The application does not store, transmit, or log any entered text
 
+## Windows SmartScreen Warning
+
+When running the application for the first time, Windows may display a SmartScreen warning saying "Windows protected your PC". This is normal for unsigned applications.
+
+To run the application:
+1. Click **"More info"**
+2. Click **"Run anyway"**
+
+This warning appears because the executable is not digitally signed with a commercial code signing certificate.
+
 ## Contributing
 
-Contributions are welcome! Please feel free to submit issues or pull requests on GitHub.
+Due to the license terms (CC BY-NC-ND 4.0), modifications cannot be distributed. However, you can submit issues or suggestions on GitHub.
 
 ## License
 
-This project is open source. See the repository for license details.
+This project is licensed under the **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0)**.
+
+You are free to:
+- **Share**: Copy and redistribute the material in any medium or format
+
+Under the following terms:
+- **Attribution**: You must give appropriate credit
+- **NonCommercial**: You may not use the material for commercial purposes
+- **NoDerivatives**: You may not distribute modified versions
+
+See the [LICENSE](LICENSE) file for details or visit: https://creativecommons.org/licenses/by-nc-nd/4.0/
 
 ## Author
 
 **Emerging-IT** - IT Production Services & Solutions
+
+Copyright (c) 2025 Philippe CANDIDO
 
 ---
 
