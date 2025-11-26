@@ -200,7 +200,7 @@ namespace MonAutoType
             {
                 Text = "Click on the target window",
                 Dock = DockStyle.Top,
-                Height = 40,
+                Height = 50,
                 TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
                 Font = new System.Drawing.Font("Segoe UI", 14F),
                 ForeColor = System.Drawing.Color.White
@@ -212,7 +212,7 @@ namespace MonAutoType
                 Dock = DockStyle.Top,
                 Height = 280,
                 TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
-                Font = new System.Drawing.Font("Segoe UI", 180F, System.Drawing.FontStyle.Bold),
+                Font = new System.Drawing.Font("Segoe UI", 120F, System.Drawing.FontStyle.Bold),
                 ForeColor = System.Drawing.Color.White,
                 BackColor = System.Drawing.Color.FromArgb(45, 45, 48)
             };
