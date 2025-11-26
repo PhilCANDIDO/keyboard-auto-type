@@ -78,6 +78,7 @@ namespace MonAutoType
         private const uint INPUT_KEYBOARD = 1;
         private const uint KEYEVENTF_UNICODE = 0x0004;
         private const uint KEYEVENTF_KEYUP = 0x0002;
+        private const ushort VK_RETURN = 0x0D;  // Virtual key code for Enter
         
         #endregion
         
@@ -185,21 +186,21 @@ namespace MonAutoType
         {
             if (string.IsNullOrEmpty(texte))
                 return;
-            
+
             // Diviser le texte en lignes
             string[] lignes = texte.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-            
+
             for (int i = 0; i < lignes.Length; i++)
             {
                 // Taper la ligne
                 TaperTexte(lignes[i], delaiEntreCaracteres);
-                
+
                 // Si ce n'est pas la dernière ligne, ajouter un retour à la ligne
                 if (i < lignes.Length - 1)
                 {
-                    TaperCaractereUnicode('\r');  // Retour chariot
-                    TaperCaractereUnicode('\n');  // Nouvelle ligne
-                    
+                    // Use virtual key code for Enter (works better with RDP/HTML5 clients)
+                    TaperToucheVirtuelle(VK_RETURN);
+
                     if (delaiEntreLignes > 0)
                     {
                         Thread.Sleep(delaiEntreLignes);
@@ -207,7 +208,58 @@ namespace MonAutoType
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Simule l'appui sur une touche virtuelle (comme Enter, Tab, etc.)
+        /// </summary>
+        /// <param name="virtualKeyCode">Le code de touche virtuelle</param>
+        private static void TaperToucheVirtuelle(ushort virtualKeyCode)
+        {
+            INPUT[] inputs = new INPUT[2];
+
+            // KeyDown
+            inputs[0] = new INPUT
+            {
+                type = INPUT_KEYBOARD,
+                U = new InputUnion
+                {
+                    ki = new KEYBDINPUT
+                    {
+                        wVk = virtualKeyCode,
+                        wScan = 0,
+                        dwFlags = 0,  // KeyDown
+                        time = 0,
+                        dwExtraInfo = GetMessageExtraInfo()
+                    }
+                }
+            };
+
+            // KeyUp
+            inputs[1] = new INPUT
+            {
+                type = INPUT_KEYBOARD,
+                U = new InputUnion
+                {
+                    ki = new KEYBDINPUT
+                    {
+                        wVk = virtualKeyCode,
+                        wScan = 0,
+                        dwFlags = KEYEVENTF_KEYUP,
+                        time = 0,
+                        dwExtraInfo = GetMessageExtraInfo()
+                    }
+                }
+            };
+
+            uint result = SendInput(2, inputs, Marshal.SizeOf(typeof(INPUT)));
+
+            if (result != 2)
+            {
+                int erreur = Marshal.GetLastWin32Error();
+                throw new Exception($"Erreur lors de l'envoi de la touche virtuelle 0x{virtualKeyCode:X2}. Code d'erreur Win32: {erreur}");
+            }
+        }
+
         #endregion
     }
 }

@@ -14,6 +14,8 @@ namespace MonAutoType
         private TextBox textBoxContenu;
         // Bouton pour déclencher la saisie automatique
         private Button boutonAutoType;
+        // Bouton pour effacer le texte
+        private Button boutonClear;
         // Label pour afficher le compte à rebours
         private Label labelStatut;
         // Champ pour le délai avant la saisie
@@ -81,12 +83,28 @@ namespace MonAutoType
                 Font = new System.Drawing.Font("Segoe UI", 9F)
             };
 
+            // Création du bouton Clear Text
+            boutonClear = new RoundedButton
+            {
+                Text = "Clear Text",
+                Location = new System.Drawing.Point(220, 400),
+                Size = new System.Drawing.Size(120, 45),
+                Anchor = AnchorStyles.Bottom,
+                Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold),
+                BackColor = System.Drawing.Color.FromArgb(100, 100, 100),
+                ForeColor = System.Drawing.Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Cursor = Cursors.Hand
+            };
+            boutonClear.FlatAppearance.BorderSize = 0;
+            boutonClear.Click += BoutonClear_Click;
+
             // Création du bouton Auto-Type avec coins arrondis
             boutonAutoType = new RoundedButton
             {
                 Text = "Auto-Type",
-                Location = new System.Drawing.Point(230, 400),
-                Size = new System.Drawing.Size(140, 45),
+                Location = new System.Drawing.Point(350, 400),
+                Size = new System.Drawing.Size(120, 45),
                 Anchor = AnchorStyles.Bottom,
                 Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold),
                 BackColor = System.Drawing.Color.FromArgb(0, 122, 204),
@@ -103,8 +121,18 @@ namespace MonAutoType
             this.Controls.Add(textBoxContenu);
             this.Controls.Add(labelDelai);
             this.Controls.Add(numericDelai);
+            this.Controls.Add(boutonClear);
             this.Controls.Add(boutonAutoType);
             this.Controls.Add(labelStatut);
+        }
+
+        /// <summary>
+        /// Gestion du clic sur le bouton Clear Text
+        /// </summary>
+        private void BoutonClear_Click(object? sender, EventArgs e)
+        {
+            textBoxContenu.Clear();
+            textBoxContenu.Focus();
         }
         
         /// <summary>
